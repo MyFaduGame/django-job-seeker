@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Apply to {{ job.title }}</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Courier New', monospace;
+    }
+
+    body {
+      background: #0d0d0d;
+      color: #f5f5f5;
+      min-height: 100vh;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: radial-gradient(circle at top left, #1a1a1a, #000);
+    }
+
+    .apply-card {
+      width: 100%;
+      max-width: 700px;
+      background: rgba(20, 20, 20, 0.95);
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 0 25px rgba(0, 255, 204, 0.2);
+      animation: fadeIn 0.6s ease;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      color: #00ffcc;
+      text-shadow: 0 0 10px #00ffcc;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    form input,
+    form textarea,
+    form select {
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #1a1a1a;
+      color: #fff;
+      box-shadow: 0 0 6px rgba(0, 204, 255, 0.4);
+      outline: none;
+      font-size: 1rem;
+    }
+
+    form input[type="file"] {
+      padding: 6px;
+      cursor: pointer;
+    }
+
+    button {
+      align-self: center;
+      padding: 12px 22px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(135deg, #00ccff, #00ff99);
+      color: #000;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 5px 15px rgba(0, 255, 153, 0.4);
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 255, 153, 0.7);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="apply-card">
+    <h2>🚀 Apply to {{ job.title }}</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Submit Application</button>
+    </form>
+  </div>
+</body>
+</html>

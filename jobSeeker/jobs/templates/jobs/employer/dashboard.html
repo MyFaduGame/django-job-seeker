@@ -1,0 +1,13 @@
+<h1>{{ profile.company_name }} - Dashboard</h1>
+<a href="{% url 'jobs:create_job' %}">Post a new job</a>
+<ul>
+  {% for job in jobs %}
+    <li>
+      <a href="{% url 'jobs:detail' pk=job.id slug=job.slug %}">{{ job.title }}</a> |
+      <a href="{% url 'jobs:edit_job' pk=job.id %}">Edit</a> |
+      <a href="{% url 'jobs:view_applications' job_pk=job.id %}">Applications ({{ job.applications.count }})</a>
+    </li>
+  {% empty %}
+    <li>No jobs yet</li>
+  {% endfor %}
+</ul>
